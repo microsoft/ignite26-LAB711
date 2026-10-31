@@ -35,7 +35,7 @@ Fill in the sections below yourself, then:
 ## 🔥LAB711: Zero Trust Lab: Securing Identities and Devices with Intune & Entra
 ### Session description
 
-Add your session description here. Keep it concise — 2-3 sentences about what attendees will learn and why it matters.
+AI is transforming how people work, but secure adoption starts with a strong foundation. In this hands-on lab, assess your security posture and apply Zero Trust principles across identities, devices, threats, and data. Gain practical experience strengthening access controls, reducing risk, protecting sensitive information, and responding to threats. Leave with the skills to build an AI-ready security foundation that enables confident AI adoption.
 
 ### 🚀 Getting started
 
