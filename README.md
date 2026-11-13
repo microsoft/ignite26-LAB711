@@ -6,10 +6,10 @@
 
 # [Microsoft Ignite 2026](https://ignite.microsoft.com)
 
-## 🔥LAB711: Zero Trust Lab: Securing Identities and Devices with Intune & Entra
+## 🔥LAB711: Build an AI-Ready Secure Foundation with Zero Trust
 ### Session description
 
-Apply Zero Trust principles to prepare a secure foundation for AI across identities, devices, agents, and data. Investigate sample assessment findings, create a scoped report-only Conditional Access policy and an unassigned Windows update ring, and record your priorities and next steps in the Zero Trust Workshop.
+AI is transforming how people work, but secure adoption starts with a strong foundation. In this hands-on lab, assess your security posture and apply Zero Trust principles across identities, devices, agents, and data. Investigate sample assessment findings, create a scoped report-only Conditional Access policy and an unassigned Windows update ring, and record your priorities and next steps in the Zero Trust Workshop. Leave with practical experience strengthening access controls and building an AI-ready security foundation.
 
 The [participant guide](instructions/instructions.md), titled **Build an AI-Ready Secure Foundation with Zero Trust**, includes guided and self-paced instructions.
 
