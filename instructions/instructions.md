@@ -26,6 +26,7 @@ You need access to Entra Conditional Access and Intune, with permission to creat
 
 Keep the Workshop open in the same browser profile throughout the lab so your notes are available in the final report.
 
+
 ===
 
 ## Section 1 - Zero Trust, the Assessment, and the Workshop
@@ -181,6 +182,8 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
     - **Members:** Leave empty.
     - **Microsoft Entra roles can be assigned to the group:** **No**, if displayed.
 
+    ![New Security group settings showing Assigned membership, no members, and role assignment disabled](instructions359866/07a-pilot-group-settings.png)
+
 5. Select **Create**.
 
 6. Open the saved group. Confirm **Assigned** membership, **no members**, and no role assignment.
@@ -227,9 +230,9 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 
     Under **Session**, **Sign-in frequency > Every time** is applied automatically and is required for risk remediation.
 
-    The image below illustrates the authentication-strength selection.
+    The image below shows both required Grant controls.
 
-    ![Saved Grant settings with Require authentication strength and Phishing-resistant MFA selected](instructions359866/09a-phishing-resistant-strength.png)
+    ![Grant settings showing Require risk remediation and Phishing-resistant MFA authentication strength, with the separate MFA checkbox unchecked](instructions359866/09a-phishing-resistant-strength.png)
 
 19. Under **Enable policy**, select **Report-only**.
     Do not select **On**.
@@ -254,7 +257,7 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
     Select **View or Edit** to verify the pilot group, **High** user risk, **Grant** settings, and **Every time** sign-in frequency, then close without saving changes.
     If the page stays blank, ask the proctor to reopen it in a fresh tab. Do not create a duplicate.
 
-    ![Saved policy details showing Report-only, one group, and All resources](instructions359866/09b-report-only-policy.png)
+    ![Saved policy details showing Report-only, one group, All resources, High user risk, risk remediation, and a new sign-in for each session](instructions359866/09b-report-only-policy.png)
 
 23. Return to the **Zero Trust Workshop** tab.
 
@@ -307,9 +310,7 @@ References: <[Create update rings](https://learn.microsoft.com/en-us/intune/devi
 
 2. Navigate to:
    **Devices > By platform > Windows > Manage updates > Windows updates**.
-
-    > [!Hint] In some portal layouts, Windows updates appears directly under the Windows management menu. Select its **Update rings** page.
-
+   
 3. Select the **Update rings** tab.
 
 4. Select **Create profile**.
@@ -362,7 +363,7 @@ References: <[Create update rings](https://learn.microsoft.com/en-us/intune/devi
 
 16. Open the saved `ZT-Lab-Windows-Update-Ring`.
 
-17. Select **Properties**. Confirm the settings match steps 7-11 and that included and excluded groups are both empty.
+17. Scroll to **Properties**. Confirm the settings match steps 7-11 and that included and excluded groups are both empty.
 
     ![Saved update ring Properties with specified settings and empty included and excluded groups](instructions359866/13-unassigned-update-ring.png)
 
@@ -413,10 +414,13 @@ Reference: <[Windows quality update policies](https://learn.microsoft.com/window
 12. Reopen `ZT-Lab-Autopatch-Hotpatch` from **Quality updates**.
     The list should show **Hotpatch Enabled: Yes** and **Assigned: No**.
 
+    ![Quality updates list showing the saved hotpatch policy with Hotpatch Enabled Yes and Assigned No](instructions359866/13c-hotpatch-policy-list.png)
+
 13. In saved **Properties**, confirm the approval settings, hotpatch **Allow**, **Default** scope tag, and empty included/excluded groups.
     Do not select **Edit** or assign devices.
 
-    ![Saved Windows Autopatch quality policy Properties showing approval settings, hotpatch Allow, and empty assignments](instructions359866/13b-unassigned-hotpatch-policy.png)
+    ![Saved Windows Autopatch quality policy Properties showing the policy name, approval settings, and hotpatch Allow](instructions359866/13b-unassigned-hotpatch-policy.png)
+
 
 ### Update the Workshop task with both device configurations
 
@@ -443,6 +447,8 @@ Reference: <[Windows quality update policies](https://learn.microsoft.com/window
 ===
 
 ## Section 5 - AI: review agent inventory, ownership, and access
+
+**Instructor-led demonstration; review only.** Follow the instructor's walkthrough. If you are working at your own pace, review the explanations and screenshots below instead. No tenant changes are required.
 
 AI agents can retrieve information and perform actions using their own permissions or a signed-in user's delegated access. As organizations adopt more agents, they need visibility into which agents are in use, who owns them, and what they can access.
 
@@ -499,6 +505,8 @@ The <[Workshop's AI security guidance](https://learn.microsoft.com/en-us/securit
 ===
 
 ## Section 6 - Data: review classification and protection
+
+**Instructor-led demonstration; review only.** Follow the instructor's walkthrough. If you are working at your own pace, review the explanations and screenshots below instead. No tenant changes are required.
 
 Microsoft 365 Copilot uses information that a user is permitted to access. If sensitive content is shared too broadly, Copilot can make that content easier to discover and use.
 
@@ -570,16 +578,14 @@ Your Workshop Progress Report brings the task statuses and notes from this lab t
 4. Select **Actions > Report**.
    Allow the report to open in a new tab.
 
-    If no report opens, check whether the browser blocked the new tab and try again.
-
     ![Workshop Actions menu showing the Report entry point](instructions359866/18a-open-progress-report.png)
 
-5. Under **Filter by Pillar**, select **Identity**. After reviewing it, repeat with **Devices**. Select **All** for a combined report.
-
-    ![Progress Report header showing All and individual pillar filters](instructions359866/18b-progress-report-header.png)
+5. Under **Filter by Pillar**, select **Identity**. Use the overview screenshot below as a reference for steps 6-8.
 
 6. Go to **Implementation Roadmap**.
    Compare its recommendations with your next steps. Timeframes are planning guidance, not deployment commitments.
+
+    Expand the relevant pillar row within a timeframe to see individual tasks. In this example, the Identity task appears under **30 Days**, and **Update Rings** appears under **Immediate**.
 
 7. Go to **Task Summary (Reviewed tasks)**.
    Review completion totals and breakdowns by pillar and functional area. Individual tasks appear under **Workshop Notes**.
@@ -587,13 +593,11 @@ Your Workshop Progress Report brings the task statuses and notes from this lab t
 8. Review **Status Distribution**.
    The report shows **In Planning** tasks as **Planned**, not completed.
 
-    The Identity example shows the authentication task and its planned work.
+    The Identity overview below shows all three areas: **Implementation Roadmap**, **Task Summary**, and **Status Distribution**. Use the expanded roadmap row or Workshop Notes for individual task details.
 
     ![Identity report showing its roadmap, aggregate task summary, and Planned status distribution](instructions359866/19-roadmap-and-status.png)
 
-    The Devices example shows the **Update Rings** task, whose note covers both device policies.
-
-    ![Devices report showing its roadmap, aggregate status, and Update Rings note](instructions359866/19b-devices-roadmap-and-status.png)
+    Select **Devices** under **Filter by Pillar** and review the same three areas. The **Update Rings** task's note covers both device policies. Then select **All** for a combined report.
 
 9. Go to **Workshop Notes**.
    Expand the relevant pillar row to find:
@@ -602,17 +606,11 @@ Your Workshop Progress Report brings the task statuses and notes from this lab t
 
     Under **All**, expand both rows to review the notes you saved.
 
+    For larger individual examples, open the <[Identity configuration note](instructions359866/19c-identity-configuration-note.png) or <[Devices configuration note](instructions359866/19d-devices-configuration-note.png).
+
     ![Workshop report with Identity and Devices configuration notes](instructions359866/20b-verified-configuration-notes.png)
 
 10. Choose one improvement to take back to your organization. Its owner, target date, and measures of progress can be agreed with the relevant stakeholders.
-
-11. If the next step is missing from your notes:
-    - Return to the relevant Workshop task.
-    - Append the next step in **Notes**.
-    - Select **Save**.
-    - Generate a fresh report with **Actions > Report** and recheck the note.
-
-    If a report shows **No Report Data Available**, generate it again from the Workshop rather than refreshing the old tab.
 
 > [!Note] The report may include unreviewed recommendations. Its percentages and **Top Risks** summarize Workshop planning data, not a live tenant assessment.
 
@@ -633,35 +631,6 @@ Review how the lab's activities support your Zero Trust roadmap and secure AI ad
 | Classify and protect data | Reviewed potential oversharing of a labeled file and DLP options for Copilot. | Confirm effective access and test appropriate protection. |
 
 **Continue your Zero Trust journey:** Assess your environment, prioritize improvements with **First**, **Then**, and **Next**, and agree on actions, owners, and target dates. Reassess and use deployment results to measure progress.
-
-### Before you leave
-
-1. Return to the **Microsoft Entra admin center** tab.
-
-2. Navigate to:
-   **Entra ID > Conditional Access > Policies**.
-
-3. Open `ZT-Lab-Require-Phishing-Resistant-MFA`.
-   Confirm it remains **Report-only** and targets only the empty lab pilot group.
-
-4. Return to the **Microsoft Intune admin center** tab.
-
-5. Navigate to:
-   **Devices > By platform > Windows > Manage updates > Windows updates > Update rings**.
-
-6. Open `ZT-Lab-Windows-Update-Ring`.
-   Under **Properties**, confirm there are **no assignments**.
-
-7. Return to **Windows updates > Quality updates**.
-   Open `ZT-Lab-Autopatch-Hotpatch`.
-   In **Properties**, confirm **Hotpatch Allow** and **no assignments**.
-
-8. Return to your **Workshop Progress Report** tab.
-   Review your saved notes and next steps.
-
-    > [!Note] If you are using a temporary lab environment, follow the platform's instructions for retaining your work before it expires.
-
-9. Sign out of the admin portals when finished.
 
 **End of lab**
 
