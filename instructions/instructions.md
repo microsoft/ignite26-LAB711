@@ -12,7 +12,7 @@ Record your findings and next steps in the Workshop, then use its Progress Repor
 
 ### Before you begin
 
-You need access to Entra Conditional Access and Intune, with permission to create groups and policies.
+You need access to Entra Conditional Access and Intune, with permission to create groups and policies. The user-risk policy requires Microsoft Entra ID P2.
 
 1. Log in to your **lab VM** using the credentials below:
 
@@ -149,13 +149,13 @@ Review two sample results and decide which improvement you would address first. 
 
 A compromised account gives an attacker the access and permissions of that identity. AI tools and agents can make that access faster to exploit, including finding sensitive data or taking actions on the account's behalf.
 
-Phishing-resistant MFA helps prevent takeover. Risk detections identify possible compromise, while sign-in activity helps identify dormant accounts that retain unnecessary access.
+Phishing-resistant MFA helps prevent takeover. A user-risk policy requires remediation when an account is likely compromised, while sign-in activity helps identify dormant accounts that retain unnecessary access.
 
-The following exercise focuses on preventing account takeover. Using the Workshop task **Rollout Conditional Access with Authentication Strength controls**, you will configure a policy requiring **Phishing-resistant MFA** and leave it in **Report-only** mode for this lab.
+The following exercise combines **Phishing-resistant MFA** with remediation for high-risk users, supporting the Workshop task **Rollout Conditional Access with Authentication Strength controls**. Keep the policy **Report-only** and scoped to the empty pilot group.
 
 ### Create a scoped report-only policy
 
-Reference: <[Conditional Access with phishing-resistant MFA](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-admin-phish-resistant-mfa).
+References: <[Conditional Access with phishing-resistant MFA](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-admin-phish-resistant-mfa) and <[Require remediation for risky users](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-risk-based-user).
 
 Use an **empty pilot security group** and **Report-only** mode to practice configuring the policy without affecting sign-ins.
 
@@ -212,16 +212,22 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 
     ![Saved policy scoped only to the empty pilot group and All resources](instructions359866/08-conditional-access-scope.png)
 
-14. Go to **Access controls > Grant**.
+14. Under **Conditions > User risk**, set **Configure** to **Yes**, select **High**, and select **Done**.
+    Then go to **Access controls > Grant**.
 
 15. Select **Grant access**.
 
-16. Select **Require authentication strength**.
+16. Select **Require risk remediation**.
+    **Require authentication strength** is selected automatically.
 
 17. Choose **Phishing-resistant MFA**.
     Leave the separate **Require multifactor authentication** checkbox unchecked.
 
 18. Select **Select** to save the grant settings.
+
+    Under **Session**, **Sign-in frequency > Every time** is applied automatically and is required for risk remediation.
+
+    The image below illustrates the authentication-strength selection.
 
     ![Saved Grant settings with Require authentication strength and Phishing-resistant MFA selected](instructions359866/09a-phishing-resistant-strength.png)
 
@@ -236,14 +242,16 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 20. Review the configuration:
     - **Users:** Only the empty `ZT-Lab-PhishingResistant-Pilot` group.
     - **Target resources:** **All resources**.
-    - **Grant:** **Require authentication strength > Phishing-resistant MFA**.
+    - **User risk:** **High**.
+    - **Grant:** **Require risk remediation** and **Require authentication strength > Phishing-resistant MFA**.
+    - **Sign-in frequency:** **Every time**.
     - **Enable policy:** **Report-only**.
 
 21. Select **Create**.
 
 22. Open the saved policy.
     In **Policy details**, confirm **Report-only**, one selected group, and **All resources**.
-    Select **View or Edit** to verify the pilot group and **Grant** settings, then close without saving changes.
+    Select **View or Edit** to verify the pilot group, **High** user risk, **Grant** settings, and **Every time** sign-in frequency, then close without saving changes.
     If the page stays blank, ask the proctor to reopen it in a fresh tab. Do not create a duplicate.
 
     ![Saved policy details showing Report-only, one group, and All resources](instructions359866/09b-report-only-policy.png)
@@ -265,7 +273,7 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 
 > [!Note] Phishing-resistant methods include passkeys (FIDO2) and Windows Hello for Business. Authenticator push approval or number matching alone does not meet this authentication strength.
 
-**Key takeaway:** Phishing-resistant MFA helps prevent account takeover, while responding to risky accounts and removing dormant access limit opportunities for misuse. Together, these actions protect the identities that people and AI tools rely on. Use the Workshop to plan their rollout.
+**Key takeaway:** Phishing-resistant MFA helps prevent account takeover. User-risk remediation addresses likely compromise, while removing dormant access closes access paths that are no longer needed. Use the Workshop to plan these complementary protections.
 
 ===
 
@@ -619,7 +627,7 @@ Review how the lab's activities support your Zero Trust roadmap and secure AI ad
 | Deployment area | What you practiced or reviewed | Implementation next step |
 |---|---|---|
 | Phishing-resistant authentication | Created a scoped, report-only authentication policy. | Prepare methods and test with a pilot group. |
-| Remove risky and dormant access | Connected risk detections and sign-in activity with compromised or unused accounts. | Investigate risky accounts and remove access that is no longer needed. |
+| Remove risky and dormant access | Added user-risk remediation to the authentication policy and reviewed how sign-in activity identifies dormant accounts. | Pilot risk remediation and remove access that is no longer needed. |
 | Patch devices within 14 days | Created an unassigned update ring and quality update policy with hotpatch allowed. | Check eligibility, pilot both policies, and measure installation and restarts. |
 | Inventory agents, owners, and access | Reviewed agent details, configured tools, and usage. | Confirm accountable owners and check permissions against access to resources. |
 | Classify and protect data | Reviewed potential oversharing of a labeled file and DLP options for Copilot. | Confirm effective access and test appropriate protection. |
