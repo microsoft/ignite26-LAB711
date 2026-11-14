@@ -2,54 +2,41 @@
 
 **Draft participant guide - Ignite 2026**
 
-AI is transforming how people work, but secure adoption starts with a strong foundation. Apply Microsoft's Zero Trust principles to strengthen access controls, reduce risk, and protect sensitive information.
+Accelerate your Zero Trust journey and prepare for secure AI adoption. Apply Microsoft's Zero Trust principles to understand your current security posture, prioritize improvements, and plan your deployment.
 
-Use the Zero Trust Assessment to identify and prioritize security findings. Then use the Workshop to plan a secure foundation across identities, devices, applications, infrastructure, networks, and data.
+Build your Zero Trust roadmap with the <[Microsoft Zero Trust Workshop and Assessment](https://microsoft.github.io/zerotrustassessment/). Review sample assessment results, work through Identity and Devices tasks, and explore AI and Data recommendations.
 
-### Lab Overview
+### Lab overview
 
-Investigate security findings, configure scoped identity and device policies, and review examples of agent access and data protection. Record your findings and next steps in the Zero Trust Workshop, then use its Progress Report to review your plan.
+Review assessment results, prioritize Workshop tasks, and practice selected configuration steps in a lab tenant. Capture your observations and implementation next steps in the Workshop, then use its Progress Report to review your action plan. The lab supports the Workshop planning process; it does not complete a production deployment.
 
-| Sections | Your activity |
-|---|---|
-| 1-2 | Investigate two sample Assessment findings, prioritize one, and save your reasoning in the Workshop. |
-| 3 | Review risky and dormant access, then create an empty pilot group and a Report-only policy for phishing-resistant authentication. |
-| 4 | Create an unassigned Windows update ring and a separate Windows Autopatch quality update policy with hotpatch allowed. |
-| 5-6 | Review agent ownership, permissions, data classification, sharing, and protection options. No configuration or Workshop entries are required. |
-| 7-8 | Review your saved plan, choose an organizational next step, and confirm the lab's safe-exit settings. |
+### Before you begin
 
-The configuration exercises prepare policies without enforcing them or deploying updates. Keep the identity policy in **Report-only**, the pilot group empty, and both device policies **unassigned**.
+Use the supplied lab environment or a dedicated test tenant. If you use a dedicated test tenant, confirm that your account can access Entra Conditional Access and Intune and create groups and policies.
 
-### Before You Begin
+1. Log in to your **lab VM** using the credentials below:
 
-> [!Alert] Complete the exercises in a lab or test tenant, not a production tenant.
+	**Username: ++@lab.VirtualMachine(LAB711).Username++**
 
-1. If you are using the supplied lab environment, sign in to the **lab VM**:
+	**Temporary Access Pass: +++@lab.Variable(TAP)+++**
 
-    **Username:** ++@lab.VirtualMachine(Win11-Pro-Base-VM).Username++
+	**Password: +++@lab.VirtualMachine(LAB711).Password+++**
 
-    **Password:** +++@lab.VirtualMachine(Win11-Pro-Base-VM).Password+++
+2. Open **Microsoft Edge** and navigate to +++https://zerotrust.microsoft.com/+++.
 
-    If you are using a dedicated test tenant, sign in with its test account on your lab device.
-
-2. Open **Microsoft Edge**.
-
-3. Navigate to the **Zero Trust Workshop**:
-   <[Zero Trust Workshop](https://zerotrust.microsoft.com/).
-
-Keep the Workshop open in the same browser profile throughout the lab so your notes are available in the final report. Notes and status overrides are stored locally in that browser profile; saving them does not establish cross-device persistence or retention after a temporary lab expires.
+Keep the Workshop open in the same browser profile throughout the lab so your notes are available in the final report.
 
 ===
 
 ## Section 1 - Zero Trust, the Assessment, and the Workshop
 
-<[Microsoft Zero Trust](https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview) continuously verifies access using identity, device, location, behavior, and risk signals, granting only the access needed.
+<[Zero Trust](https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview) is a modern security approach based on a simple idea: **never trust, always verify**.
 
-AI assistants and agents use identities and permissions to access organizational data. Before expanding AI use, identify the access you need to protect and the gaps you need to address.
+AI assistants and agents use identities and permissions to access organizational data. Before expanding AI use, understand your current security posture and prioritize the improvements needed to support secure adoption.
 
-Microsoft's Zero Trust approach uses three principles:
+Zero Trust uses three principles:
 
-| Principle | Connection to this lab |
+| Principle |  |
 |---|---|
 | Verify explicitly | Evaluate identity, authentication, device posture, and other available signals before granting access. |
 | Use least privilege access | Limit user and agent permissions, review unnecessary access, and identify accountable owners. |
@@ -57,43 +44,55 @@ Microsoft's Zero Trust approach uses three principles:
 
 **Business enablement is the purpose:** Align these principles with the organization's mission, priorities, risks, and processes; it is not a fourth principle.
 
-### Understand the Tools
+### Use the Assessment and Workshop together
 
-**Find a gap, plan a response, and decide how to check it.** Use the three tools in this order:
+The Workshop and Assessment help you **learn, plan, and assess** as you advance your Zero Trust journey. Following the <[Zero Trust Workshop Plan](https://microsoft.github.io/zerotrustassessment/guide), this lab starts with assessment results to establish a baseline, then uses Workshop tasks to prioritize improvements and build an action plan.
 
-1. **Find a gap in the Assessment.**
-   Open the <[prepared sample report](https://microsoft.github.io/zerotrustassessment/demo/) and explore its findings by pillar. For example, an Identity finding checks whether privileged accounts have phishing-resistant methods registered.
+1. **Establish your baseline with the Assessment.**
+   Open the prepared sample report in a new tab: +++https://microsoft.github.io/zerotrustassessment/demo/+++.
 
-    The sample provides findings to investigate during this lab; changes in your tenant do not update its results. After the lab, you can <[run the assessment in your own environment](https://github.com/microsoft/zerotrustassessment).
+    Review the results by pillar to understand the sample environment's security posture. For example, an Identity check evaluates whether privileged accounts have phishing-resistant methods registered.
+
+    These are sample results, not a live report from your lab tenant. After the lab, you can <[run the assessment in your own environment](https://github.com/microsoft/zerotrustassessment).
 
     ![Zero Trust Assessment overview with pillar navigation](instructions359866/01a-assessment-overview.png)
 
-2. **Plan a response in the Workshop.**
-   Find the matching task. For the Identity example, use **Rollout Conditional Access with Authentication Strength controls**. Select **View details** to read the guidance, then return to the task editor.
+2. **Prioritize improvements in the Workshop.**
+   The Workshop groups tasks into **First**, **Then**, and **Next** to help you build your Zero Trust roadmap.
 
-    Set **Status** to **In Planning**, enter your proposed change and the evidence you need in **Notes**, and select **Save**. Keep the note within **1,000 characters**, retaining your assessment reasoning as you add configuration outcomes.
+    ![Workshop Identity roadmap showing the First, Then, and Next headers and example tasks](instructions359866/01d-workshop-first-then-next.png)
 
-    Changes in a product portal do not automatically update the Workshop. Record the configurations you verify, any blockers, and the work that remains.
+    Return to the **Zero Trust Workshop** tab you opened before the lab. Find the task that matches the assessment result. For the Identity example, use **Rollout Conditional Access with Authentication Strength controls**.
 
-    ![Workshop Identity task editor showing View details, In Planning, Notes, and Save](instructions359866/01b-workshop-task.png)
+    Select **View details** to read the guidance, then return to the **Zero Trust Workshop** tab.
 
-3. **Review your plan in the Progress Report.**
-   Locate **Actions > Report** in the upper-right corner of the Workshop. In Section 7, use this menu to review your saved statuses, notes, and next steps together.
+    Set **Status** to **In Planning**. In **Notes**, record:
+    - What the assessment shows.
+    - Why this improvement is a priority.
+    - What you plan to change and how you will check it.
 
-    The report tracks your plan, not deployed protection. Keep the task **In Planning** while pilot testing and rollout remain outstanding.
+    Select **Save**.
+
+    Portal changes do not automatically update the Workshop. As you continue, add verified configurations, blockers, and remaining work to your notes. Keep your assessment observations.
+
+    ![Workshop Identity task showing View details, In Planning, Notes, and Save](instructions359866/01b-workshop-task.png)
+
+3. **Build your action plan with the Progress Report.**
+   Locate **Actions > Report** in the upper-right corner of the Workshop. In Section 7 of this lab, you will use this menu to review your saved statuses, notes, and next steps together.
+
+    Generate a summary report of your Workshop progress. Use it alongside the assessment results to review findings and prioritize next steps.
 
     ![Workshop Actions menu with Report visible](instructions359866/01c-workshop-report-entry.png)
 
-Next, review two findings, prioritize one, and record your reasoning in the Workshop.
+Next, review the Identity and Devices assessment results, prioritize an improvement, and record your rationale in the corresponding Workshop task.
 
 ===
 
-## Section 2 - Assess the Critical Gaps
+## Section 2 - Review assessment results and prioritize improvements
 
-Review two findings. Note what each confirms and what remains unknown, then prioritize one.
+Review two sample assessment results and choose which improvement to prioritize. You will save your observations about both results in the matching Workshop task's **Notes** in step 15.
 
-1. Open the **prepared Zero Trust Assessment** in a new browser tab:
-   <[Zero Trust Assessment sample report](https://microsoft.github.io/zerotrustassessment/demo/).
+1. Return to the **Zero Trust Assessment sample report** tab.
 
 2. Select **Identity**.
 
@@ -106,8 +105,7 @@ Review two findings. Note what each confirms and what remains unknown, then prio
 
 4. Review the finding's status, explanation, and supporting evidence.
 
-5. Record what the finding confirms about method registration.
-   Note the additional evidence needed to verify sign-in enforcement.
+5. Identify what the finding confirms about method registration and what additional evidence you would need to check sign-in enforcement.
 
 6. Select **Devices**.
 
@@ -123,10 +121,10 @@ Review two findings. Note what each confirms and what remains unknown, then prio
     - Policy assignment.
     - Update installation results.
 
-9. Record the evidence still needed to evaluate the **14-day patching objective**.
+9. Identify the evidence still needed to evaluate the **14-day patching objective**.
 
-10. Choose one finding to prioritize.
-    Record your reason based on affected accounts or devices, potential exposure, and evidence gaps.
+10. Prioritize an improvement based on the two assessment results.
+    Consider affected accounts or devices, potential exposure, and evidence still needed.
 
 11. Return to the **Zero Trust Workshop** tab.
 
@@ -135,45 +133,28 @@ Review two findings. Note what each confirms and what remains unknown, then prio
     - **Devices > Update Rings**.
 
 13. Select **View details**.
-    Review the guidance, then return to the task.
+    Review the guidance, then return to the **Zero Trust Workshop** tab.
 
     If the guidance tab does not open, use the matching link: <[authentication-strength guidance (RMI_141)](https://microsoft.github.io/zerotrustassessment/docs/workshop-guidance/identity/RMI_141) or <[Update Rings guidance (RMD_141)](https://microsoft.github.io/zerotrustassessment/docs/workshop-guidance/devices/RMD_141). The live Update Rings task ID is **DEV-092**, although its guidance URL uses **RMD_141**.
 
 14. Set **Status** to **In Planning**.
 
-15. In **Notes**, enter your observations, priority rationale, and follow-up evidence.
-    Use the template below and stay within the **1,000-character limit**.
+15. In **Notes**, record what both assessment results show, why you chose your priority, and what additional evidence you need.
 
 16. Select **Save**.
 
 17. Reopen the task and confirm that the exact note and **In Planning** status were retained.
 
-> [!Hint] Some product names are obfuscated in the sample report. Use the check's description and supporting evidence to identify the finding.
-
-**Workshop note template**
-
-```text
-Identity: [finding, evidence, and its limits].
-Devices: [finding, evidence, and its limits].
-Priority: [which finding to address first and why].
-Follow-up: [additional evidence needed].
-```
-
-### Check Your Work
-
-Confirm your saved Workshop note includes both findings, the priority and rationale, and needed follow-up evidence. Keep it for adding policy details in Sections 3 and 4.
-
-If tenant configuration is blocked later, record what remains uncompleted. Do not copy a "Created..." example as a completed result without creating and verifying that object.
 
 ===
 
-## Section 3 - Phishing-Resistant Authentication; Remove Risky & Dormant Access
+## Section 3 - Identity: plan phishing-resistant authentication and review access
 
-Review risky and dormant access, then configure a report-only Conditional Access policy for phishing-resistant authentication.
+Continue the Identity pillar with **Rollout Conditional Access with Authentication Strength controls**. Review risky and dormant access, then practice an implementation step by configuring a report-only Conditional Access policy for phishing-resistant authentication. Record the verified configuration and remaining deployment steps in the Workshop task.
 
 Authentication and access review address different questions: **How should this identity sign in?** and **Should it still have this access?**
 
-### Review Risky and Dormant Access
+### Review risky and dormant access
 
 In Entra, review risk detections and sign-in activity alongside the account's permissions. Check why the account needs access before deciding what to change.
 
@@ -189,14 +170,14 @@ Combine these signals rather than treating a risk flag or an old sign-in date as
 
 For each account in the example, identify what you would investigate before deciding whether to retain or remove access.
 
-### Create a Scoped Report-Only Policy
+### Create a scoped report-only policy
 
 Reference: <[Conditional Access with phishing-resistant MFA](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-admin-phish-resistant-mfa).
 
 Use an **empty pilot security group** and **Report-only** mode to practice configuring the policy without affecting sign-ins.
 
 1. Sign in to the **Microsoft Entra admin center** with your **Cloud Admin** account:
-   <[Microsoft Entra admin center](https://entra.microsoft.com/).
+   +++https://entra.microsoft.com/+++.
 
     **Username:** ++@lab.CloudCredential(PromoCode).AdministrativeUsername++
 
@@ -299,7 +280,7 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 26. Set **Status** to **In Planning**.
 
 27. In **Notes**, append the policy details and the checks needed before enforcement.
-    Keep your existing assessment observations within the **1,000-character limit**. Use this example only after verifying the saved policy; otherwise record the blocker:
+    Keep your existing assessment observations. Use this example only after verifying the saved policy; otherwise record the blocker:
 
     ```text
     Created ZT-Lab-Require-Phishing-Resistant-MFA in Report-only mode,
@@ -314,7 +295,7 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 
 > [!Note] Phishing-resistant methods include passkeys (FIDO2) and Windows Hello for Business. Authenticator push approval or number matching alone does not meet this authentication strength.
 
-### Check Your Work
+### Review your progress
 
 Confirm the saved policy targets only the empty pilot group, covers **All resources**, requires the **Phishing-resistant MFA** authentication strength, and remains **Report-only**. Confirm your Workshop note is saved.
 
@@ -322,9 +303,9 @@ Keep the group empty and leave the policy in Report-only mode for the lab. With 
 
 ===
 
-## Section 4 - Patch Devices Within 14 Days
+## Section 4 - Devices: plan update rings and timely updates
 
-Create a Windows update ring and a separate Windows Autopatch quality update policy with hotpatch allowed. The assessment check you reviewed examines update policies. To check whether devices meet the 14-day goal, you also need installation results.
+Continue the Devices pillar with **Update Rings**. Practice selected implementation steps by creating a Windows update ring and a separate Windows Autopatch quality update policy with hotpatch allowed. Use a **14-day quality-update objective** for this lab's planning exercise. The assessment check you reviewed examines update policies; installation results are also needed to measure progress against that objective.
 
 Leave **both policies unassigned**. The ring configures update behavior, deadlines, and grace. The Windows Autopatch quality update policy configures cloud approval/availability and hotpatch. Hotpatch is not an update-ring setting. Its quality-update availability setting takes precedence over ring deferral; the ring's deadlines and grace still apply. Use `0` days in both places.
 
@@ -332,12 +313,12 @@ Leave **both policies unassigned**. The ring configures update behavior, deadlin
 >
 > Your lab tenant needs suitable administrative permissions, licensing, and access to both policy creation routes. If either is unavailable, record the blocker and ask the proctor rather than starting service onboarding. Device enrollment, Autopatch-group onboarding, and update installation are outside this lab's scope. Actual hotpatch deployment additionally requires eligible licensing, Intune-managed Windows 11 24H2 or later, a current baseline, and VBS running; check the current <[hotpatch prerequisites](https://learn.microsoft.com/windows/deployment/windows-autopatch/manage/windows-autopatch-hotpatch-updates). Baseline updates still require restarts; hotpatch does not mean "never reboot."
 
-### Create an Unassigned Windows Update Ring
+### Create an unassigned Windows update ring
 
 References: <[Create update rings](https://learn.microsoft.com/en-us/intune/device-updates/windows/manage-update-rings) and <[Update ring settings](https://learn.microsoft.com/en-us/intune/device-updates/windows/ref-update-ring-settings).
 
 1. Sign in to the **Microsoft Intune admin center** with your **Cloud Admin** account:
-   <[Microsoft Intune admin center](https://intune.microsoft.com/).
+   +++https://intune.microsoft.com/+++.
 
     **Username:** ++@lab.CloudCredential(PromoCode).AdministrativeUsername++
 
@@ -428,7 +409,7 @@ References: <[Create update rings](https://learn.microsoft.com/en-us/intune/devi
 
     Review the saved settings and confirm that the assignment lists are empty. With no assignments, the ring does not apply these settings to any devices.
 
-### Allow Hotpatch in a Separate Windows Autopatch Quality Update Policy
+### Allow hotpatch in a separate Windows Autopatch quality update policy
 
 Reference: <[Windows quality update policies](https://learn.microsoft.com/windows/deployment/windows-autopatch/manage/windows-autopatch-windows-quality-update-overview).
 
@@ -478,7 +459,7 @@ Reference: <[Windows quality update policies](https://learn.microsoft.com/window
 
     Keep the quality update policy unassigned. **Allow** prepares the hotpatch setting, but the policy does not deploy updates to any devices.
 
-### Record Both Device Configurations
+### Update the Workshop task with both device configurations
 
 1. Return to the **Zero Trust Workshop** tab.
 
@@ -488,7 +469,7 @@ Reference: <[Windows quality update policies](https://learn.microsoft.com/window
 3. Set **Status** to **In Planning**.
 
 4. Update **Notes** with both policy outcomes and how you would verify timely installation.
-    Replace stale planned/deferred wording rather than duplicating it. Preserve the assessment observations and condense as needed within the **1,000-character limit**. Use this example only after verifying both saved policies; otherwise record which configuration is blocked:
+    Update earlier plans with what you verified and keep your assessment observations. Use this example only after verifying both saved policies; otherwise record which configuration is blocked:
 
     ```text
     Created ZT-Lab-Windows-Update-Ring without assignments.
@@ -506,7 +487,7 @@ Reference: <[Windows quality update policies](https://learn.microsoft.com/window
 
 > [!Note] Quality-update deadlines depend on when devices discover updates and complete restarts. Use installation reporting to track the 14-day objective, including offline devices. Feature updates have a separate deadline.
 
-### Check Your Work
+### Review your progress
 
 Confirm that `ZT-Lab-Windows-Update-Ring` has every specified setting and **no assignments**. Confirm that `ZT-Lab-Autopatch-Hotpatch` has **Hotpatch Allow**, monthly B approval at `0` days, the other specified approval settings, and **no assignments**. Confirm your Workshop note records both outcomes or blockers and remains **In Planning**. With no assigned devices, neither configuration demonstrates installed updates or active device hotpatching.
 
@@ -514,13 +495,13 @@ To evaluate the 14-day target in a deployment, compare update release dates with
 
 ===
 
-## Section 5 - Inventory Agents, Owners & Access
+## Section 5 - AI: review agent inventory, ownership, and access
 
 Review the agent example below to identify ownership and access-review questions. No configuration or Workshop entry is required.
 
 Agents should have an accountable owner and only the access needed for their purpose, consistent with Zero Trust least privilege. The Agent 365 registry in the Microsoft 365 admin center provides a starting point for reviewing agents. Available details vary by agent capabilities; permissions and resource-side access evidence establish what an agent can access.
 
-### Inventory, Ownership, and Access
+### Inventory, ownership, and access
 
 - **Inventory:** A record of agents and their intended jobs provides a starting point for governance.
 - **Ownership:** An accountable owner is responsible for an agent's use. A publisher or creator is not necessarily the current owner.
@@ -546,7 +527,7 @@ To complete an access review, inspect the agent's permissions and the resources 
 
 **Key takeaway:** Know the agent's job, identify its owner, and verify that its access matches its purpose.
 
-### Learn More
+### Learn more
 
 - <[Agent registry](https://learn.microsoft.com/en-us/microsoft-agent-365/admin/agent-registry-overview)
 - <[Agent details and permissions](https://learn.microsoft.com/en-us/microsoft-agent-365/admin/agent-details#agent-permissions)
@@ -556,19 +537,19 @@ To complete an access review, inspect the agent's permissions and the resources 
 
 ===
 
-## Section 6 - Classify & Protect Data
+## Section 6 - Data: review classification and protection
 
 Review the data-protection example below to connect classification and sharing findings with protection decisions. No configuration or Workshop entry is required.
 
 Sensitive information needs an appropriate classification and protection, consistent with Zero Trust least privilege. Microsoft Purview Data Security Posture Management (DSPM) provides a starting point for finding classification gaps and potential oversharing. Microsoft 365 Copilot respects existing permissions; it does not correct permissions that are too broad.
 
-### Classification and Protection
+### Classification and protection
 
 - **Sensitivity:** A classification taxonomy defines sensitivity levels and how information should be handled.
 - **Classification:** A sensitivity label identifies the information's classification. A **Confidential** marking alone does not restrict access.
 - **Protection:** Sharing permissions and label-applied encryption can restrict access and usage. A separate, label-based Data Loss Prevention (DLP) policy can restrict processing by Copilot and agents.
 
-### Example - A Classified File Still Needs Access Review
+### Example - Review access to a classified file
 
 **This file is labeled Confidential. Is its access appropriate?** Follow one finding from **SP Oversharing Assessment** to connect classification and sharing information with protection options.
 
@@ -588,7 +569,7 @@ The <[review-actions view](instructions359866/17b-dspm-review-actions.png) offer
 
 **Key takeaway:** Before expanding Copilot, review a sensitive-data location: check its classification, validate who can access it, and verify the protection it needs.
 
-### Learn More
+### Learn more
 
 - <[DSPM data risk assessments and remediation](https://learn.microsoft.com/en-us/purview/data-security-posture-management-oversharing)
 - <[Sensitivity labels](https://learn.microsoft.com/en-us/purview/sensitivity-labels)
@@ -600,11 +581,11 @@ The <[review-actions view](instructions359866/17b-dspm-review-actions.png) offer
 
 ===
 
-## Section 7 - Review Your Workshop Progress Report
+## Section 7 - Review your Workshop action plan
 
-Open the Workshop report to review your saved task statuses and notes. Check that your notes describe what you found, the configurations you verified or could not complete, and what you would do next.
+Use the Workshop Progress Report to bring your assessment observations, priority actions, and implementation next steps together. Review your saved task statuses and notes, distinguishing verified lab configurations from deployment work that remains.
 
-1. Return to your <[Zero Trust Workshop](https://zerotrust.microsoft.com/) tab.
+1. Return to your **Zero Trust Workshop** tab.
 
 2. Open each of the following tasks:
     - **Identity > Rollout Conditional Access with Authentication Strength controls**.
@@ -640,7 +621,7 @@ Open the Workshop report to review your saved task statuses and notes. Check tha
 
     ![Identity report showing its roadmap, aggregate task summary, and Planned status distribution](instructions359866/19-roadmap-and-status.png)
 
-    Expand the Identity note to review the policy configuration and next steps. The task appears as **Planned** in the report because it remains **In Planning** in the task editor.
+    Expand the Identity note to review the policy configuration and next steps. The task appears as **Planned** in the report because it remains **In Planning** in the Workshop.
 
     ![Devices report showing its roadmap, aggregate status, and Update Rings note](instructions359866/19b-devices-roadmap-and-status.png)
 
@@ -657,17 +638,18 @@ Open the Workshop report to review your saved task statuses and notes. Check tha
 
     Use the two notes to connect your findings with the policies you configure and the work that remains. Distinguish the saved Report-only and unassigned settings from protection you still need to test and deploy.
 
-10. Choose one next step to take back to your organization.
+10. Identify one priority action to take back to your organization.
+    Consider which stakeholders need to agree on its owner, target date, and measures of progress.
 
 11. If the next step is missing from your notes:
     - Return to the relevant Workshop task.
-    - Append the next step in **Notes**, within the **1,000-character limit**.
+    - Append the next step in **Notes**.
     - Select **Save**.
     - Generate a fresh report with **Actions > Report** and recheck the note.
 
     Do not rely on refreshing an old report tab. A later refresh can show **No Report Data Available**; return to the Workshop and generate the report again.
 
-### Check Your Work
+### Review your progress
 
 Confirm the report includes your assessment notes, the identity policy and both device-policy outcomes or blockers, and your next steps. The two Workshop task entries cover these three policies; no additional hotpatch task is required. Sections 5 and 6 are review-only and do not require report entries. Update your notes as you test and deploy changes.
 
@@ -675,13 +657,13 @@ Default/unreviewed recommendations can also appear in the report. Completion per
 
 ===
 
-## Section 8 - Review and Next Steps
+## Section 8 - Review and next steps
 
 ### Review
 
-Review what you learned about each AI-readiness action:
+Review how the lab's activities support your Zero Trust roadmap and secure AI adoption:
 
-| AI-readiness action | What you practiced or reviewed | Next step |
+| Deployment area | What you practiced or reviewed | Implementation next step |
 |---|---|---|
 | Phishing-resistant authentication | Created a scoped, report-only authentication policy. | Prepare methods and test with a pilot group. |
 | Remove risky and dormant access | Reviewed risk and inactivity as separate reasons to investigate access. | Review access with resource owners. |
@@ -689,12 +671,11 @@ Review what you learned about each AI-readiness action:
 | Inventory agents, owners, and access | Reviewed who owns an agent and which permissions it needs. | Identify agents needing ownership or access review. |
 | Classify and protect data | Reviewed a Confidential-labeled file flagged for potential oversharing and label-based Copilot/DLP protection guidance. | Validate sharing audience and effective access; choose and test appropriate protection. |
 
-**Take back to your organization:** Choose one security issue to address. Use the Workshop guidance to plan the changes and decide how you will check that they work.
+**Continue your Zero Trust journey:** Establish your organization's assessment baseline, use the Workshop's **First**, **Then**, and **Next** structure to prioritize improvements, and agree on actions, owners, and target dates with the relevant stakeholders. Use subsequent assessments and deployment evidence to measure progress against your baseline.
 
-### Before You Leave
+### Before you leave
 
-1. Return to the **Microsoft Entra admin center**:
-   <[Microsoft Entra admin center](https://entra.microsoft.com/).
+1. Return to the **Microsoft Entra admin center** tab.
 
 2. Navigate to:
    **Entra ID > Conditional Access > Policies**.
@@ -702,8 +683,7 @@ Review what you learned about each AI-readiness action:
 3. Open `ZT-Lab-Require-Phishing-Resistant-MFA`.
    Confirm it remains **Report-only** and targets only the empty lab pilot group.
 
-4. Return to the **Microsoft Intune admin center**:
-   <[Microsoft Intune admin center](https://intune.microsoft.com/).
+4. Return to the **Microsoft Intune admin center** tab.
 
 5. Navigate to:
    **Devices > By platform > Windows > Manage updates > Windows updates > Update rings**.
@@ -723,11 +703,11 @@ Review what you learned about each AI-readiness action:
 
 9. Sign out of the admin portals when finished.
 
-**End of Lab**
+**End of lab**
 
 ---
 
-## Additional Resources
+## Additional resources
 
 - <[Zero Trust Assessment demo](https://microsoft.github.io/zerotrustassessment/demo/).
 - <[Zero Trust Workshop](https://zerotrust.microsoft.com/).
