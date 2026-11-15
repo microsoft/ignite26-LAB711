@@ -578,7 +578,7 @@ Your Workshop Progress Report brings the task statuses and notes from this lab t
 4. Select **Actions > Report**.
    Allow the report to open in a new tab.
 
-    ![Workshop Actions menu showing the Report entry point](instructions359866/18a-open-progress-report.png)
+    ![Workshop Actions menu showing the Report entry point](instructions359866/01c-workshop-report-entry.png)
 
 5. Under **Filter by Pillar**, select **Identity**. Use the overview screenshot below as a reference for steps 6-8.
 
