@@ -63,16 +63,9 @@ The Workshop and Assessment help you **learn, plan, and assess**. Following the 
 
     ![Workshop Identity roadmap showing the First, Then, and Next headers and example tasks](instructions359866/01d-workshop-first-then-next.png)
 
-    Return to the **Zero Trust Workshop** tab. Find the matching task, such as **Rollout Conditional Access with Authentication Strength controls** for the Identity example.
+    Each task provides **View details** for deployment guidance, **Status** for tracking progress, **Notes** for your findings and next steps, and **Save** to store your changes.
 
-    Select **View details** to read the guidance, then return to the **Zero Trust Workshop** tab.
-
-    Set **Status** to **In Planning**. You can use **Notes** to capture:
-    - What the assessment shows.
-    - Why this improvement is a priority.
-    - What you plan to change and how you will check it.
-
-    Select **Save**.
+    In Section 2, you will use these controls to record your assessment observations and prioritize an improvement.
 
     Portal changes do not update the Workshop automatically. Add your configuration results and any blockers to your existing notes as you continue.
 
@@ -160,8 +153,10 @@ References: <[Conditional Access with phishing-resistant MFA](https://learn.micr
 
 Use an **empty pilot security group** and **Report-only** mode to practice configuring the policy without affecting sign-ins.
 
-1. Sign in to the **Microsoft Entra admin center** with your **Cloud Admin** account:
+1. Open the **Microsoft Entra admin center** in a separate browser tab and sign in with your **Cloud Admin** account:
    +++https://entra.microsoft.com/+++.
+
+    Keep the Workshop and Assessment tabs open.
 
     **Username:** ++@lab.CloudCredential(PromoCode).AdministrativeUsername++
     
@@ -255,7 +250,6 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 22. Open the saved policy.
     In **Policy details**, confirm **Report-only**, one selected group, and **All resources**.
     Select **View or Edit** to verify the pilot group, **High** user risk, **Grant** settings, and **Every time** sign-in frequency, then close without saving changes.
-    If the page stays blank, ask the proctor to reopen it in a fresh tab. Do not create a duplicate.
 
     ![Saved policy details showing Report-only, one group, All resources, High user risk, risk remediation, and a new sign-in for each session](instructions359866/09b-report-only-policy.png)
 
@@ -266,7 +260,7 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 
 25. Set **Status** to **In Planning**.
 
-26. Add the policy name, verified settings, and remaining rollout steps to **Notes**. Keep your assessment observations. If creation was blocked, record that instead.
+26. Add the policy name, verified settings, and remaining rollout steps to **Notes**. Keep your assessment observations.
 
     Before enforcement, prepare authentication methods and emergency-access exclusions, add pilot users, and <[review report-only results](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-report-only#reviewing-results).
 
