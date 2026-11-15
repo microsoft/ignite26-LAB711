@@ -164,6 +164,19 @@ Use an **empty pilot security group** and **Report-only** mode to practice confi
 
     **Password:** +++@lab.CloudCredential(PromoCode).AdministrativePassword+++
 
+    > [!note] **If prompted to set up multifactor authentication:**
+    > 1. On **Install Microsoft Authenticator**, select **Set up a different authenticator app**, then **Next**.
+    >
+    >	!IMAGE[43mifrir.png](instructions359866/43mifrir.png)
+    >
+    > 2. When the QR code appears, open **Contoso Authenticator App** from the VM taskbar. Keep the QR code visible.
+    >
+    > 3. Select **Scan QR from Screen** and copy the six-digit code.
+    >
+    > !IMAGE[djpfxkg1.png](instructions359866/djpfxkg1.png)
+    >
+    > 4. Return to the browser, select **Next**, and enter the code. Complete the remaining prompts to finish setup.
+
 2. Navigate to:
    **Entra ID > Groups > All groups**.
 
