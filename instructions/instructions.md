@@ -475,17 +475,17 @@ Ownership continues after deployment. Changes to tools, knowledge sources, or pe
 
 The agent's purpose guides the permissions review. Answering questions about policies may require reading policy documents, but does not automatically require editing them or sending messages.
 
-![Contract Policy Expert in the Agent 365 registry with its Details pane open](instructions359866/14g-contract-agent-details.png)
+![Contract Policy Expert in the Agent 365 registry with its Details pane open](instructions359866/05a-contract-agent-details.png)
 
 **Data & tools** shows the configured knowledge source, retrieval tool, and contract-policy skill. Knowledge sources provide information for answers. Tools provide capabilities, such as retrieving content or performing an action.
 
 Together, these details explain how the agent carries out its work and which connections need an access review.
 
-![Contract Policy Expert Data & tools tab showing configured knowledge, a retrieval tool, and a skill](instructions359866/15f-contract-agent-data-tools.png)
+![Contract Policy Expert Data & tools tab showing configured knowledge, a retrieval tool, and a skill](instructions359866/05b-contract-agent-data-tools.png)
 
 **Activity** shows active users, sessions, exceptions, and trends. These metrics help identify adoption, changes in usage, and operational issues that may need investigation.
 
-![Contract Policy Expert Activity tab showing usage metrics and trends](instructions359866/15g-contract-agent-activity.png)
+![Contract Policy Expert Activity tab showing usage metrics and trends](instructions359866/05c-contract-agent-activity.png)
 
 ### Understand agent permissions
 
